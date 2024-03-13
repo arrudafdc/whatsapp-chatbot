@@ -28,6 +28,15 @@ Instale as dependências:
 $ npm install
 ```
 
+Dentro da variável "isClientMessage" mude a string do message.id.remote para o id que você deseja simular um cliente:
+
+```javascript
+const isClientMessage = message.id.remote === "seuIdAqui" && !message.fromMe;
+// Exemplo 
+const isClientMessage = message.id.remote === "558296235320@c.us" && !message.fromMe;
+
+```
+
 Execute o bot
 ```
 $ npm start
