@@ -1,5 +1,6 @@
+const fs = require("fs");
 const qrcode = require("qrcode-terminal");
-const { Client, LocalAuth } = require("whatsapp-web.js");
+const { Client, LocalAuth, MessageMedia } = require("whatsapp-web.js");
 
 const client = new Client({
   authStrategy: new LocalAuth(),
@@ -19,7 +20,8 @@ client.on("ready", () => {
 client.on("message_create", handleIncomingMessage);
 
 async function handleIncomingMessage(message) {
-  const isClientMessage = message.id.remote === "seuIdAqui" && !message.fromMe;
+  const isClientMessage =
+    message.id.remote === "558296235320@c.us" && !message.fromMe;
 
   const phraseToEndServiceByClient =
     "Vou finalizar o atendimento. Obrigado por entrar em contato!";
@@ -52,9 +54,12 @@ async function handleClientMessage(message) {
         await sendPhotoInfo(message);
         break;
       case "4":
-        await redirectToAttendant(message);
+        await sendMidiaKit(message);
         break;
       case "5":
+        await redirectToAttendant(message);
+        break;
+      case "6":
         endChat(message);
         break;
       default:
@@ -66,7 +71,7 @@ async function handleClientMessage(message) {
 
 async function sendInitialMessage(message) {
   await message.reply(
-    "Olá! Obrigado por entrar em contato. Por favor, digite o número da opção sobre o que você gostaria de falar.\n\n1: Serviços e Orçamentos\n2: Ingressos e Eventos\n3: Cade minhas fotos?\n4: Falar com atendente\n5: Finalizar conversa"
+    "Olá! Obrigado por entrar em contato. Por favor, digite o número da opção sobre o que você gostaria de falar.\n\n1: Serviços e Orçamentos\n2: Ingressos e Eventos\n3: Cade minhas fotos?\n4: Confira nosso Mídia Kit\n5: Falar com atendente\n6: Finalizar conversa"
   );
 }
 
@@ -104,6 +109,28 @@ async function sendInvalidOptionMessage(message) {
   await message.reply(
     "Desculpe, não entendi. Por favor, digite o número da opção sobre o que você gostaria de falar.\n\n1: Serviços e Orçamentos\n2: Ingressos e Eventos\n3: Cade minhas fotos?\n4: Falar com atendente\n5: Finalizar conversa"
   );
+}
+
+async function sendMidiaKit(message) {
+  const pdfPath = "assets/midiakit.pdf";
+
+  try {
+    const pdfBuffer = fs.readFileSync(pdfPath);
+
+    const media = new MessageMedia(
+      "application/pdf",
+      pdfBuffer.toString("base64"),
+      "midiakit.pdf"
+    );
+
+    await client.sendMessage(message.from, media, {
+      caption: "Confira o documento PDF.",
+    });
+
+    console.log("Documento PDF enviado com sucesso!");
+  } catch (error) {
+    console.error("Erro ao ler o arquivo PDF:", error);
+  }
 }
 
 client.initialize();
