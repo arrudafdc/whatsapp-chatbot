@@ -19,8 +19,7 @@ client.on("ready", () => {
 client.on("message_create", handleIncomingMessage);
 
 async function handleIncomingMessage(message) {
-  const isClientMessage =
-    message.id.remote === "558296235320@c.us" && !message.fromMe;
+  const isClientMessage = message.id.remote === "seuIdAqui" && !message.fromMe;
 
   const phraseToEndServiceByClient =
     "Vou finalizar o atendimento. Obrigado por entrar em contato!";
