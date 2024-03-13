@@ -10,7 +10,7 @@ Chatbot desenvolvido em Node.js utilizando a biblioteca WhatsApp Web para fornec
 
 - **Respostas Automáticas**: O bot é capaz de responder automaticamente às mensagens dos clientes com informações sobre serviços, eventos, fotos, etc.
 - **Redirecionamento para Atendentes**: Os clientes têm a opção de serem redirecionados para um atendente humano quando necessário.
-- **Em Breve**: Os clientes poderão solicitar um midiakit e o bot enviará o aqruivo em formato PDF.
+- **Envio de documentos**: Os clientes podem solicitar um mídia kit e o bot enviará o arquivo em formato PDF.
 
 ## Instalação e Uso
 
