@@ -6,6 +6,8 @@ Chatbot desenvolvido em Node.js utilizando a biblioteca WhatsApp Web para fornec
 
 ![Texto Alternativo](https://github.com/arrudafdc/whatsapp-chatbot/blob/main/assets/captura2.png)
 
+![Texto Alternativo](https://github.com/arrudafdc/whatsapp-chatbot/blob/main/assets/captura3.png)
+
 ## Funcionalidades
 
 - **Respostas Automáticas**: O bot é capaz de responder automaticamente às mensagens dos clientes com informações sobre serviços, eventos, fotos, etc.
